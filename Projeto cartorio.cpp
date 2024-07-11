@@ -62,14 +62,14 @@ int consulta()
 	char conteudo[200];
 	
 	printf("Digite o CPF a ser cadastrado: ");
-	scanf("%s",cpf); 
-	
+	scanf("%s",cpf); 	
 	FILE *file;
 	file = fopen (cpf,"r");
 	
 	if(file == NULL)
 	{
-	 printf ("não foi possivel abrir o aquivo, não localizado /n");
+	 printf ("Cpf não cadastrado, tente novamente \n");
+	 
 	}
 	
 	while(fgets(conteudo, 200, file) != NULL)
@@ -83,28 +83,75 @@ int consulta()
 	
 }
 int deletar()
-{
-	printf("Você escolheu deletar Nomes\n");
-	system ("pause");
+{    char cpf[40];
+
+	printf("Digite o cpf que quer deletar do sistema:\n");
+	scanf("%s",cpf);	
+	FILE *file;
+	file = fopen(cpf,"r");		
+	if (file == NULL);
+		{
+			printf("o cpf digitado nao foi encontrado no sistema.\n");
+			system("pause");
+			return 0;
+			
+		}{
+	
+		
+	printf("Deseja deletar esse aluno do sistema ?");
+	printf("%s" , cpf);
+	printf("\n Digite (S) ou (N) \n\n");
+	
+	getchar();
+	
+	char opcao;
+	opcao = getchar();
+	
+if (opcao == 's' || opcao == 'S')
+	{
+		if (remove(cpf) ==0);
+		{printf ("Aluno deletado com sucesso \n\n");
+		
+		}
+		system("pause");
+	}
+	else if(opcao == 'n'|| opcao == 'N')
+	{
+		printf("retornando ao menu principal\n");
+		system("pause");
+		}}
+	 
 }
 
 int main ()
 	{
 	int opcao=0; //definindo Variaveis 
-	int x=1;
+	int laco=1;	
+		setlocale(LC_ALL, "portuguese");//Definindo a Linguagem
+	char senhadigitada[]="a";
+	int comparacao; 
 	
+		printf(" \tCartório da EBAC \n\n");
+		printf("\tLogin Administrados\n\nDigite sua senha:");
+		scanf("%s", senhadigitada);
+		
+	comparacao = strcmp(senhadigitada, "admin");
+		
+	if(comparacao == 0)
 	
-	for(x=1;x=1;)
- {
-		system("cls");
+	{
+		system ("cls");
+		for (laco=1; laco=1;)	
+ 	{
+	
 	
 	setlocale(LC_ALL, "portuguese");//Definindo a Linguagem 
 		 	
 		printf(" \tCartório da EBAC \n\n");//Inicio do menu
 		printf(" escolha a opção desejada do menu:\n\n");
-		printf("\t-1 - registrar nomes \n");
-		printf("\t-2 - consultar nomes \n");
-		printf("\t-3 - deletar nomes \n");
+		printf("\t-1 - Cadastrar aluno \n");
+		printf("\t-2 - consultar CPF \n");
+		printf("\t-3 - deletar CPF \n");
 		printf("\t-4 - Fechar Programa \n");
 		printf("Opção:	"); //Fim do Menu 	
 		scanf("%d", &opcao); //Armazenamento de opção do usuario
@@ -112,14 +159,17 @@ int main ()
 		switch(opcao)
 	{	case 1:
 	 	registro();
+	 		system ("cls");
 		break;
 	
 		case 2:
 		consulta();
+			system ("cls");
 		break;
 
 		case 3:
 		deletar();	
+			system ("cls");
 		break;
 		
 		case 4:
@@ -130,10 +180,9 @@ int main ()
 		default:
 		printf("Essa escolha e invalida, tente novamente\n");
 		system ("pause");
-		break;
-	} //Fim da seleção
-	}	
-		printf("\tCriado por Bruno Moreno\n\n");
+		break;}
+}	 //Fim da seleção
+}else
+		printf("senha incorreta!");
 }
-
 
